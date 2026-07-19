@@ -164,6 +164,16 @@ st.sidebar.markdown("### Retrieval Settings")
 k_param = st.sidebar.slider("Chunks to retrieve (k)", min_value=1, max_value=15, value=config.DEFAULT_K)
 fetch_k_param = st.sidebar.slider("Initial candidates (fetch_k)", min_value=5, max_value=40, value=config.DEFAULT_FETCH_K)
 
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 📂 Indexed Repository")
+
+st.sidebar.link_button(
+    "🌐 FastAPI GitHub Repository",
+    "https://github.com/fastapi/fastapi",
+    use_container_width=True
+)
+
+
 st.sidebar.markdown("### Model Details")
 st.sidebar.info(f"""
 - **Embeddings**: `sentence-transformers/all-MiniLM-L6-v2` (Local CPU)
@@ -177,7 +187,7 @@ st.markdown("### 💡 Example Questions")
 examples = [
     "Why did FastAPI modify APIRoute handler caching or routing cache?",
     "Why did FastAPI refactor router route building to make it thread-safe?",
-    "What changes did Sebastian Ramirez merge recently regarding thread safety?",
+    "What is the race condition in _IncludedRouter cache rebuild reported in issue #15974?",
     "Is there any issue or PR details on candidate cache corruption?"
 ]
 
