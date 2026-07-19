@@ -1,7 +1,19 @@
 import streamlit as st
 import sys
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+
+if "GROQ_API_KEY" in st.secrets:
+    os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+
+# TEMPORARY - Debug only
+st.write("Secrets keys:", list(st.secrets.keys()))
+st.write("Has GROQ_API_KEY:", "GROQ_API_KEY" in st.secrets)
+
+from src import config
 # Add project root to python path
 sys.path.append(str(Path(__file__).resolve().parent))
 
