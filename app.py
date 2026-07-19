@@ -140,7 +140,7 @@ if "hallucination_guard" not in st.session_state:
 st.markdown("""
 <div class="title-banner">
     <h1>PatchContext</h1>
-    <p>Grounded historical RAG pipeline over the FastAPI repository's development history.</p>
+    <p>Grounded AI assistant for exploring FastAPI's development history with evidence-backed answers from commits, pull requests, and issues.</p>
 </div>
 """, unsafe_allow_html=True)
 
