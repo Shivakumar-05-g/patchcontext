@@ -1,187 +1,187 @@
-# PatchContext - Historical Developer RAG for FastAPI
+# PatchContext
 
-PatchContext is a B.Tech 4th-year level Retrieval-Augmented Generation (RAG) pipeline designed to help engineers understand historical design decisions, behavior changes, and implementation rationales in the FastAPI codebase. 
+PatchContext is a retrieval-augmented question answering system for the [FastAPI](https://github.com/fastapi/fastapi) repository. Instead of asking an LLM to answer questions about a codebase from memory, it retrieves the actual commits, pull requests, and issues that are relevant to the question, and generates an answer grounded in that context — with links back to GitHub.
 
-Instead of guessing why a feature was introduced or how a bug fix was decided, PatchContext retrieves relevant context directly from historical git commits, pull requests, issue threads, and developer comments, generating a grounded answer complete with clickable citation links to GitHub and an NLI-based hallucination guard.
+**Live demo:** https://patchcontext-rag.streamlit.app/
 
----
+## Why I built this
 
-## 1. Problem Statement & Motivation
-In large open-source repositories like FastAPI, code changes rapidly. When new developers join or existing developers refactor legacy modules, they often ask:
-- *Why was this API route caching refactored this way?*
-- *Why did we replace standard IDs with a WeakKeyDictionary?*
-- *What thread-safety issue motivated this routing change?*
+I kept running into the same problem when working on unfamiliar codebases: I could ask an LLM "why was this implemented this way?" and get a confident, plausible-sounding answer that had no connection to what actually happened in the repository. It's not that the model is wrong on purpose — it just doesn't have access to the PR discussion, the issue thread, or the commit message that explains the actual reasoning.
 
-Standard LLMs do not have access to these internal repository discussions or recent commits, resulting in generic answers or complete hallucinations. PatchContext solves this by indexing historical GitHub development history and presenting a grounded, verifiable chat assistant.
+PatchContext tries to fix that by treating the repository's history (commits, PRs, issues) as the source of truth, retrieving the pieces relevant to a question, and only then asking the LLM to answer — with citations pointing back to the exact commit or PR.
 
----
+FastAPI was a convenient repository to build this against: active history, a lot of substantive PR discussion, and issues that explain real design decisions.
 
-## 2. System Architecture
-The following diagram illustrates how raw repository history transitions into a grounded answer:
+## How it works
 
-```
-                  +-----------------------+
-                  |  FastAPI GitHub Repo  |
-                  +-----------+-----------+
-                              | (github_loader.py)
-                              v
-                  +-----------+-----------+
-                  |  Commits, PRs, Issues |
-                  +-----------+-----------+
-                              | (document_processor.py)
-                              v
-                  +-----------+-----------+
-                  | Chunks & Metadata     |
-                  +-----------+-----------+
-                              | (embeddings.py & all-MiniLM-L6-v2)
-                              v
-                  +-----------+-----------+
-                  |  FAISS Vector Store   | (Persisted Locally)
-                  +-----------+-----------+
-                              |
-      [User Query]            |
-           |                  v
-           +---------> [ MMR Retrieval ] (retriever.py)
-                              |
-                              v
-                  +-----------+-----------+
-                  | Diverse Context Chunks|
-                  +-----------+-----------+
-                              |
-                              v
-                  +-----------+-----------+
-                  |  Groq Chat Generator  | (rag_chain.py)
-                  +-----------+-----------+
-                              |
-                              v
-                  +-----------+-----------+
-                  |   Generated Answer    |
-                  +-----------+-----------+
-                              |
-                              v
-                  +-----------+-----------+
-                  | NLI Hallucination     | (hallucination_guard.py)
-                  | Guard & Citations     |
-                  +-----------+-----------+
-                              |
-                              v
-                  +-----------+-----------+
-                  |  Streamlit Dashboard  | (app.py)
-                  +-----------------------+
+1. **Ingestion** — `scripts/ingest.py` pulls commits, issues, and pull requests from the GitHub API for `fastapi/fastapi` and writes them to `data/raw/`.
+2. **Processing** — `document_processor.py` normalizes and chunks the raw records into documents suitable for embedding.
+3. **Embedding** — chunks are embedded with a HuggingFace sentence-transformers model (`all-MiniLM-L6-v2`).
+4. **Indexing** — embeddings are stored in a FAISS index under `vectorstore/faiss_index/`.
+5. **Retrieval** — at query time, `retriever.py` uses MMR (Maximal Marginal Relevance) instead of plain top-k similarity, so the retrieved context isn't five near-duplicate chunks.
+6. **Generation** — the retrieved context and question are passed to Groq (`llama-3.1-8b-instant` by default) to produce an answer.
+7. **Hallucination guard** — before the answer is returned, `hallucination_guard.py` runs a local NLI cross-encoder (`cross-encoder/nli-deberta-v3-small`) to check whether the generated answer is actually entailed by the retrieved context.
+8. **Citations** — `citations.py` attaches the source commit/PR/issue links so every answer is traceable back to GitHub.
+
+```mermaid
+flowchart TD
+    A[GitHub Repository] --> B[GitHub Loader]
+    B --> C[Document Processing]
+    C --> D[Embeddings]
+    D --> E[FAISS Index]
+    E --> F[Retriever - MMR]
+    F --> G[Groq LLM]
+    G --> H[Hallucination Guard]
+    H --> I[Streamlit UI]
 ```
 
----
+## Features
 
-## 3. Technology Stack & Key Decisions
+- Repository-aware Q&A over commits, PRs, and issues
+- MMR retrieval to reduce redundant context
+- FAISS vector search
+- HuggingFace sentence-transformer embeddings
+- Groq-backed answer generation
+- Local NLI-based hallucination check before returning an answer
+- Clickable GitHub citations in every response
+- RAGAs-based evaluation pipeline
 
-- **Local Embeddings (`sentence-transformers/all-MiniLM-L6-v2`)**: Used locally on CPU. Embeddings convert text into dense semantic vector representations, enabling us to search by semantic meaning rather than simple keyword matching. This model runs entirely locally with zero API cost.
-- **Vector Database (FAISS)**: FAISS (Facebook AI Similarity Search) is used to perform fast similarity searches over dense vector spaces. Indexing is done once and persisted to disk in `vectorstore/faiss_index` so the web app loads it instantly without rebuilding.
-- **Retrieval (Maximal Marginal Relevance - MMR)**: Rather than retrieving nearly identical documents, MMR balances relevance with context diversity. This ensures that a single query retrieves a useful mix of a pull request description, related issue comments, and commit messages.
-- **Generator (Groq LLM via LangChain)**: ChatGroq (`llama-3.1-8b-instant`) executes the generation of the response using a custom system prompt. It is instructed to stick strictly to the retrieved context and output references in a specific format (`[PR: #Number]`, `[Commit: SHA]`).
-- **NLI Hallucination Guard (`cross-encoder/nli-deberta-v3-small`)**: Claims in the generated answer are split into sentences and audited against the retrieved context using a local Natural Language Inference model. If a statement is classified as `neutral` or `contradiction` rather than `entailment`, it is flagged. If the local NLI model fails to load, it falls back to an LLM-based NLI evaluation on Groq.
-- **Citations Extractor**: Cross-checks LLM citations (`[PR: #123]`) against the metadata of the retrieved documents. Clickable links are generated to point directly to the live GitHub resources.
+## Project structure
 
----
-
-## 4. Project Structure
-```
-patchcontext/
+```text
+PatchContext/
 │
-├── app.py                     # Streamlit dashboard UI
-├── requirements.txt           # Python dependencies
-├── README.md                  # Project documentation
-├── .env.example               # Example environmental variables template
-├── .gitignore                 # File exclusion list
+├── app.py
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── .env                  # local only, not committed
 │
 ├── data/
-│   └── raw/                   # Cached raw commits, PRs, and issues JSON
+│   ├── raw/
+│   │   ├── commits.json
+│   │   ├── issues.json
+│   │   ├── pull_requests.json
+│   │   ├── test_commits.json
+│   │   ├── test_issues.json
+│   │   └── test_prs.json
+│   └── processed/
 │
-├── vectorstore/               # Persisted local FAISS index
-│
-├── src/
-│   ├── config.py              # Configuration manager and monkeypatches
-│   ├── github_loader.py       # Ingests repository history using PyGithub
-│   ├── document_processor.py  # Maps JSON data to Documents and chunks them
-│   ├── embeddings.py          # Sets up HuggingFace embeddings
-│   ├── vector_store.py        # Compiles and saves/loads FAISS index
-│   ├── retriever.py           # MMR retrieval module
-│   ├── rag_chain.py           # Configures Groq and RAG prompt flow
-│   ├── citations.py           # Extracts and cross-checks citations
-│   ├── hallucination_guard.py # Audits sentences using NLI classification
-│   └── evaluation.py          # RAGAS evaluation execution logic
+├── evaluation/
+│   ├── benchmark_50.json
+│   ├── report.md
+│   └── results.json
 │
 ├── scripts/
-│   ├── ingest.py              # Script to build vector index
-│   ├── evaluate.py            # Script to run RAGAS benchmark
-│   └── generate_benchmark.py  # Script to generate evaluation JSON
+│   ├── ingest.py
+│   ├── generate_benchmark.py
+│   ├── evaluate.py
+│   ├── test_guard.py
+│   ├── test_helpers.py
+│   ├── test_loader.py
+│   ├── test_processor.py
+│   ├── test_rag.py
+│   └── test_retriever.py
 │
-└── evaluation/
-    ├── benchmark_50.json      # 50-question evaluation benchmark
-    ├── results.json           # Raw RAGAS results
-    └── report.md              # Markdown evaluation summary report
+├── src/
+│   ├── config.py
+│   ├── github_loader.py
+│   ├── document_processor.py
+│   ├── embeddings.py
+│   ├── vector_store.py
+│   ├── retriever.py
+│   ├── rag_chain.py
+│   ├── hallucination_guard.py
+│   ├── citations.py
+│   └── evaluation.py
+│
+└── vectorstore/
+    └── faiss_index/
+        ├── index.faiss
+        └── index.pkl
 ```
 
----
+## Installation
 
-## 5. Setup & Ingestion Instructions
+```bash
+git clone https://github.com/<your-username>/PatchContext.git
+cd PatchContext
 
-### Prerequisites
-- Python 3.10 or higher (Tested on Python 3.13)
-- Groq API Key (Get one from [Groq Console](https://console.groq.com/))
-- GitHub Personal Access Token (Optional, but recommended for live data fetching)
+python -m venv venv
+source venv/bin/activate   # venv\Scripts\activate on Windows
 
-### Installation
-1. Clone the repository or navigate to the workspace directory.
-2. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Copy `.env.example` to `.env` and fill out your keys:
-   ```bash
-   copy .env.example .env
-   ```
-   Modify `.env`:
-   ```env
-   GROQ_API_KEY=gsk_your_groq_api_key_here
-   GITHUB_TOKEN=your_optional_github_token_here
-   ```
+pip install -r requirements.txt
+```
 
-### Running Data Ingestion
-To build the vector database, run the ingestion script. The script first checks if raw data is cached in `data/raw/`. If cached, it builds the index immediately without hitting the GitHub API.
+### Environment variables
+
+Create a `.env` file in the project root:
+
+```
+GITHUB_TOKEN=your_github_personal_access_token
+GROQ_API_KEY=your_groq_api_key
+```
+
+The GitHub token is needed to avoid the low rate limits on unauthenticated API requests during ingestion. A token with read-only `public_repo` access is enough.
+
+## Running the project
+
+Build the index first:
+
 ```bash
 python scripts/ingest.py
 ```
-*(If you want to fetch new live data from GitHub, run with `python scripts/ingest.py --force-fetch`)*.
 
----
+This fetches commits, issues, and PRs for `fastapi/fastapi`, processes them, and writes the FAISS index to `vectorstore/faiss_index/`. Depending on GitHub API rate limits, this can take a while on first run.
 
-## 6. How to Run
+Then launch the app:
 
-### Streamlit Application Dashboard
-Launch the dashboard UI using Streamlit:
 ```bash
 streamlit run app.py
 ```
-Open the local URL (usually `http://localhost:8501`) in your browser to ask questions and review the NLI Hallucination audit report.
 
-### Running RAGAS Evaluation
-To execute RAGAS evaluation on a subset of the 50-question benchmark:
-```bash
-python scripts/evaluate.py --num-questions 3
-```
-This writes raw results to `evaluation/results.json` and compiles a report in `evaluation/report.md`.
+## Example questions
 
----
+- Why was dependency injection redesigned?
+- Which PR introduced this feature?
+- What discussion led to this implementation?
+- Why was this commit made?
+- Why was PR #16021 opened to optimize APIRoute handler caching?
 
-## 7. Example Questions
-Try querying:
-- *Why did FastAPI modify APIRoute handler caching or routing cache?*
-- *Why did FastAPI refactor router route building to make it thread-safe?*
-- *What is the candidate cache corruption race condition in _IncludedRouter?*
+## Evaluation
 
----
+The system is evaluated with [RAGAs](https://github.com/explodinggpt/ragas) on a 50-question benchmark built from real FastAPI PRs and issues (`evaluation/benchmark_50.json`). A sample run is included in `evaluation/report.md`.
 
-## 8. Limitations & Future Scope
-- **Groq Rate Limits**: The on-demand service tier of Groq has a small token limit (6,000 TPM). Because RAGAS evaluates rows in parallel, running RAGAS on all 50 questions concurrently can lead to 429 RateLimitErrors. Future builds should implement concurrent rate-limiting queues.
-- **NLI Context Size**: The local NLI model (`all-MiniLM` / `deberta-v3-small`) has a token context limit of 512 tokens. Large retrieved chunks must be parsed or summarized before NLI checking.
-- **Repository Scope**: Currently maps a subset of recent history. Large enterprise contexts would benefit from metadata filtering prior to vector similarity matches.
+| Metric | Score |
+| --- | --- |
+| Faithfulness | 0.4481 |
+| Answer Relevancy | 0.5802 |
+| Context Precision | 1.0000 |
+| Context Recall | 1.0000 |
+
+Faithfulness is currently the weakest metric — the model sometimes paraphrases beyond what's directly stated in the retrieved context, even when the retrieval itself is on target. Context precision and recall are strong, which suggests the retrieval step is doing its job; the generation step is where most of the remaining error comes from.
+
+Full metric definitions and per-question breakdowns are in `evaluation/report.md`.
+
+## Limitations
+
+- Scoped to a single repository (`fastapi/fastapi`); pointing it at another repo requires re-running ingestion and rebuilding the index.
+- Retrieval quality depends on how well a commit/PR/issue was written in the first place — sparse commit messages give the retriever less to work with.
+- The hallucination guard reduces unsupported claims but doesn't eliminate them; faithfulness scores above still show room to improve.
+- Groq's free tier rate limits can slow down evaluation runs across the full 50-question benchmark.
+
+## Future improvements
+
+- Expand ingestion to support arbitrary repositories via a config flag
+- Add re-ranking after MMR retrieval
+- Cache embeddings across ingestion runs to avoid recomputation
+- Run the full 50-question benchmark instead of a sampled subset
+- Add streaming responses in the Streamlit UI
+
+## Acknowledgements
+
+Built against the public history of [fastapi/fastapi](https://github.com/fastapi/fastapi). Thanks to the maintainers and contributors of that project for the depth of PR and issue discussion that made this kind of retrieval useful in the first place.
+
+## License
+
+MIT
