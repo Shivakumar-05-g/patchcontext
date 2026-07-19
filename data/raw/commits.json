@@ -1,0 +1,92 @@
+[
+  {
+    "source_type": "commit",
+    "sha": "afe41126f624af30038cc8e17b2aaf60ebd4b838",
+    "message": "📝 Update release notes\n\n[skip ci]",
+    "author": "github-actions[bot]",
+    "created_date": "2026-07-16T18:39:08+00:00",
+    "source_url": "https://github.com/fastapi/fastapi/commit/afe41126f624af30038cc8e17b2aaf60ebd4b838",
+    "comments": []
+  },
+  {
+    "source_type": "commit",
+    "sha": "7f05e26d0898e8e1491df331c2dd4368f5e35054",
+    "message": "🔥 Remove now-obsolete scripts to generate data for FastAPI People (#16016)",
+    "author": "Sebastián Ramírez",
+    "created_date": "2026-07-16T18:38:36+00:00",
+    "source_url": "https://github.com/fastapi/fastapi/commit/7f05e26d0898e8e1491df331c2dd4368f5e35054",
+    "comments": []
+  },
+  {
+    "source_type": "commit",
+    "sha": "efcf8a183026edb97e342ee3fb38a0a3416798ac",
+    "message": "📝 Update release notes\n\n[skip ci]",
+    "author": "github-actions[bot]",
+    "created_date": "2026-07-16T18:25:46+00:00",
+    "source_url": "https://github.com/fastapi/fastapi/commit/efcf8a183026edb97e342ee3fb38a0a3416798ac",
+    "comments": []
+  },
+  {
+    "source_type": "commit",
+    "sha": "e735449bae685102d448d2a443a88e1d3304abbd",
+    "message": "📝 Restructure FastAPI People and related pages (#16015)",
+    "author": "Sebastián Ramírez",
+    "created_date": "2026-07-16T18:25:14+00:00",
+    "source_url": "https://github.com/fastapi/fastapi/commit/e735449bae685102d448d2a443a88e1d3304abbd",
+    "comments": []
+  },
+  {
+    "source_type": "commit",
+    "sha": "866b7a3d0ce1025a3811f23aea4846d01a2b16a8",
+    "message": "🔖 Release version 0.139.2 (#16014)\n\nCo-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>",
+    "author": "Sebastián Ramírez",
+    "created_date": "2026-07-16T15:04:54+00:00",
+    "source_url": "https://github.com/fastapi/fastapi/commit/866b7a3d0ce1025a3811f23aea4846d01a2b16a8",
+    "comments": []
+  },
+  {
+    "source_type": "commit",
+    "sha": "7b3effea754619f0c305af576be23a51865292a3",
+    "message": "📝 Update release notes\n\n[skip ci]",
+    "author": "github-actions[bot]",
+    "created_date": "2026-07-16T14:58:20+00:00",
+    "source_url": "https://github.com/fastapi/fastapi/commit/7b3effea754619f0c305af576be23a51865292a3",
+    "comments": []
+  },
+  {
+    "source_type": "commit",
+    "sha": "7fe315c21afb8a57a2b559772e0f7ced7e5d071a",
+    "message": "🐛 Refactor router route building to make it thread-safe, mainly relevant for tests running in parallel threads (uncommon) (#16013)",
+    "author": "Sebastián Ramírez",
+    "created_date": "2026-07-16T14:57:38+00:00",
+    "source_url": "https://github.com/fastapi/fastapi/commit/7fe315c21afb8a57a2b559772e0f7ced7e5d071a",
+    "comments": []
+  },
+  {
+    "source_type": "commit",
+    "sha": "c48e67b1ce9c03fc9bd4b1ac72350e51ad5a6e8a",
+    "message": "🔖 Release version 0.139.1 (#16012)\n\nCo-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>",
+    "author": "Sebastián Ramírez",
+    "created_date": "2026-07-16T09:09:10+00:00",
+    "source_url": "https://github.com/fastapi/fastapi/commit/c48e67b1ce9c03fc9bd4b1ac72350e51ad5a6e8a",
+    "comments": []
+  },
+  {
+    "source_type": "commit",
+    "sha": "2acc4fbf155caf016e3bd2602c0d2ec52723e635",
+    "message": "📝 Update release notes\n\n[skip ci]",
+    "author": "github-actions[bot]",
+    "created_date": "2026-07-16T09:00:03+00:00",
+    "source_url": "https://github.com/fastapi/fastapi/commit/2acc4fbf155caf016e3bd2602c0d2ec52723e635",
+    "comments": []
+  },
+  {
+    "source_type": "commit",
+    "sha": "eb75fd078e83aed935016bcdf0705cd58bbf0d0e",
+    "message": "🐛 Fix frontend fallback support for doted paths like `/users/john.doe` (#16011)",
+    "author": "Sebastián Ramírez",
+    "created_date": "2026-07-16T08:59:23+00:00",
+    "source_url": "https://github.com/fastapi/fastapi/commit/eb75fd078e83aed935016bcdf0705cd58bbf0d0e",
+    "comments": []
+  }
+]

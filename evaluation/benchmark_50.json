@@ -1,0 +1,488 @@
+[
+  {
+    "id": 1,
+    "question": "Why was PR #16021 opened to optimize apiroute handler caching and fix endpoint context cache?",
+    "ground_truth": "PR #16021, titled 'Optimize APIRoute handler caching and fix endpoint context cache', describes the change and its motivation. ## Summary  This PR fixes two issues in `routing.py`:  1",
+    "expected_context_keywords": [
+      "16021",
+      "Optimize",
+      "RohaanDev"
+    ]
+  },
+  {
+    "id": 2,
+    "question": "What change does PR #16021 introduce?",
+    "ground_truth": "PR #16021 introduces the change described by its title: 'Optimize APIRoute handler caching and fix endpoint context cache'. ## Summary  This PR fixes two issues in `routing.py`:  1",
+    "expected_context_keywords": [
+      "16021",
+      "Optimize",
+      "change"
+    ]
+  },
+  {
+    "id": 3,
+    "question": "Why was PR #16018 opened to bump mcp from 1.26.0 to 1.28.1?",
+    "ground_truth": "PR #16018, titled 'Bump mcp from 1.26.0 to 1.28.1', describes the change and its motivation. Bumps [mcp](https://github.com/modelcontextprotocol/python-sdk) from 1.26.0 to 1.28.1",
+    "expected_context_keywords": [
+      "16018",
+      "Bump",
+      "dependabot[bot]"
+    ]
+  },
+  {
+    "id": 4,
+    "question": "What change does PR #16018 introduce?",
+    "ground_truth": "PR #16018 introduces the change described by its title: 'Bump mcp from 1.26.0 to 1.28.1'. Bumps [mcp](https://github.com/modelcontextprotocol/python-sdk) from 1.26.0 to 1.28.1",
+    "expected_context_keywords": [
+      "16018",
+      "Bump",
+      "change"
+    ]
+  },
+  {
+    "id": 5,
+    "question": "Why was PR #16017 opened to bump mcp from 1.26.0 to 1.27.2?",
+    "ground_truth": "PR #16017, titled 'Bump mcp from 1.26.0 to 1.27.2', describes the change and its motivation. Bumps [mcp](https://github.com/modelcontextprotocol/python-sdk) from 1.26.0 to 1.27.2",
+    "expected_context_keywords": [
+      "16017",
+      "Bump",
+      "dependabot[bot]"
+    ]
+  },
+  {
+    "id": 6,
+    "question": "What change does PR #16017 introduce?",
+    "ground_truth": "PR #16017 introduces the change described by its title: 'Bump mcp from 1.26.0 to 1.27.2'. Bumps [mcp](https://github.com/modelcontextprotocol/python-sdk) from 1.26.0 to 1.27.2",
+    "expected_context_keywords": [
+      "16017",
+      "Bump",
+      "change"
+    ]
+  },
+  {
+    "id": 7,
+    "question": "Why was PR #16016 opened to remove now-obsolete scripts to generate data for fastapi people?",
+    "ground_truth": "PR #16016, titled 'Remove now-obsolete scripts to generate data for FastAPI People', describes the change and its motivation. ## Pull Request  🔥 Remove now-obsolete scripts to generate data for FastAPI People  <!-- Please start with a GitHub Discussion",
+    "expected_context_keywords": [
+      "16016",
+      "Remove",
+      "tiangolo"
+    ]
+  },
+  {
+    "id": 8,
+    "question": "What change does PR #16016 introduce?",
+    "ground_truth": "PR #16016 introduces the change described by its title: 'Remove now-obsolete scripts to generate data for FastAPI People'. ## Pull Request  🔥 Remove now-obsolete scripts to generate data for FastAPI People  <!-- Please start with a GitHub Discussion",
+    "expected_context_keywords": [
+      "16016",
+      "Remove",
+      "change"
+    ]
+  },
+  {
+    "id": 9,
+    "question": "Why was PR #16015 opened to restructure fastapi people and related pages?",
+    "ground_truth": "PR #16015, titled 'Restructure FastAPI People and related pages', describes the change and its motivation. ## Pull Request  📝 Restructure FastAPI People and related pages  <!-- Please start with a GitHub Discussion",
+    "expected_context_keywords": [
+      "16015",
+      "Restructure",
+      "tiangolo"
+    ]
+  },
+  {
+    "id": 10,
+    "question": "What change does PR #16015 introduce?",
+    "ground_truth": "PR #16015 introduces the change described by its title: 'Restructure FastAPI People and related pages'. ## Pull Request  📝 Restructure FastAPI People and related pages  <!-- Please start with a GitHub Discussion",
+    "expected_context_keywords": [
+      "16015",
+      "Restructure",
+      "change"
+    ]
+  },
+  {
+    "id": 11,
+    "question": "Why was PR #16014 opened to release version 0.139.2?",
+    "ground_truth": "PR #16014, titled 'Release version 0.139.2', describes the change and its motivation. Prepare release 0.139.2.",
+    "expected_context_keywords": [
+      "16014",
+      "Release",
+      "tiangolo"
+    ]
+  },
+  {
+    "id": 12,
+    "question": "What change does PR #16014 introduce?",
+    "ground_truth": "PR #16014 introduces the change described by its title: 'Release version 0.139.2'. Prepare release 0.139.2.",
+    "expected_context_keywords": [
+      "16014",
+      "Release",
+      "change"
+    ]
+  },
+  {
+    "id": 13,
+    "question": "Why was PR #16013 opened to refactor router route building to make it thread-safe, mainly relevant for tests running in parallel threads (uncommon)?",
+    "ground_truth": "PR #16013, titled 'Refactor router route building to make it thread-safe, mainly relevant for tests running in parallel threads (uncommon)', describes the change and its motivation. ## Pull Request  🐛 Refactor router route building to make it thread-safe, mainly relevant for tests running in parallel threads (uncommon)  This should solve what's described in https://github.com/fastapi/fastapi/discussions/15914  <!-- Please start with a GitHub Discussion",
+    "expected_context_keywords": [
+      "16013",
+      "Refactor",
+      "tiangolo"
+    ]
+  },
+  {
+    "id": 14,
+    "question": "What change does PR #16013 introduce?",
+    "ground_truth": "PR #16013 introduces the change described by its title: 'Refactor router route building to make it thread-safe, mainly relevant for tests running in parallel threads (uncommon)'. ## Pull Request  🐛 Refactor router route building to make it thread-safe, mainly relevant for tests running in parallel threads (uncommon)  This should solve what's described in https://github.com/fastapi/fastapi/discussions/15914  <!-- Please start with a GitHub Discussion",
+    "expected_context_keywords": [
+      "16013",
+      "Refactor",
+      "change"
+    ]
+  },
+  {
+    "id": 15,
+    "question": "Why was PR #16012 opened to release version 0.139.1?",
+    "ground_truth": "PR #16012, titled 'Release version 0.139.1', describes the change and its motivation. Prepare release 0.139.1.",
+    "expected_context_keywords": [
+      "16012",
+      "Release",
+      "tiangolo"
+    ]
+  },
+  {
+    "id": 16,
+    "question": "What change does PR #16012 introduce?",
+    "ground_truth": "PR #16012 introduces the change described by its title: 'Release version 0.139.1'. Prepare release 0.139.1.",
+    "expected_context_keywords": [
+      "16012",
+      "Release",
+      "change"
+    ]
+  },
+  {
+    "id": 17,
+    "question": "Why was PR #16011 opened to fix frontend fallback support for doted paths like `/users/john.doe`?",
+    "ground_truth": "PR #16011, titled 'Fix frontend fallback support for doted paths like `/users/john.doe`', describes the change and its motivation. ## Pull Request  🐛 Fix frontend fallback support for doted paths like `/users/john.doe`  <!-- Please start with a GitHub Discussion",
+    "expected_context_keywords": [
+      "16011",
+      "Fix",
+      "tiangolo"
+    ]
+  },
+  {
+    "id": 18,
+    "question": "What change does PR #16011 introduce?",
+    "ground_truth": "PR #16011 introduces the change described by its title: 'Fix frontend fallback support for doted paths like `/users/john.doe`'. ## Pull Request  🐛 Fix frontend fallback support for doted paths like `/users/john.doe`  <!-- Please start with a GitHub Discussion",
+    "expected_context_keywords": [
+      "16011",
+      "Fix",
+      "change"
+    ]
+  },
+  {
+    "id": 19,
+    "question": "Why was PR #16009 opened to fix typos in release notes?",
+    "ground_truth": "PR #16009, titled 'Fix typos in release notes', describes the change and its motivation. fixed error",
+    "expected_context_keywords": [
+      "16009",
+      "Fix",
+      "sauravthakurq"
+    ]
+  },
+  {
+    "id": 20,
+    "question": "What change does PR #16009 introduce?",
+    "ground_truth": "PR #16009 introduces the change described by its title: 'Fix typos in release notes'. fixed error",
+    "expected_context_keywords": [
+      "16009",
+      "Fix",
+      "change"
+    ]
+  },
+  {
+    "id": 21,
+    "question": "What does commit afe41126f624af30038cc8e17b2aaf60ebd4b838 do?",
+    "ground_truth": "Commit afe41126f624af30038cc8e17b2aaf60ebd4b838 (afe41126) by github-actions[bot] is described as: 📝 Update release notes  [skip ci]",
+    "expected_context_keywords": [
+      "afe41126",
+      "github-actions[bot]",
+      "📝"
+    ]
+  },
+  {
+    "id": 22,
+    "question": "Who authored commit afe41126f624af30038cc8e17b2aaf60ebd4b838?",
+    "ground_truth": "Commit afe41126f624af30038cc8e17b2aaf60ebd4b838 was authored by github-actions[bot]. The commit message is: 📝 Update release notes  [skip ci]",
+    "expected_context_keywords": [
+      "afe41126",
+      "github-actions[bot]"
+    ]
+  },
+  {
+    "id": 23,
+    "question": "What does commit 7f05e26d0898e8e1491df331c2dd4368f5e35054 do?",
+    "ground_truth": "Commit 7f05e26d0898e8e1491df331c2dd4368f5e35054 (7f05e26d) by Sebastián Ramírez is described as: 🔥 Remove now-obsolete scripts to generate data for FastAPI People (#16016)",
+    "expected_context_keywords": [
+      "7f05e26d",
+      "Sebastián Ramírez",
+      "🔥"
+    ]
+  },
+  {
+    "id": 24,
+    "question": "Who authored commit 7f05e26d0898e8e1491df331c2dd4368f5e35054?",
+    "ground_truth": "Commit 7f05e26d0898e8e1491df331c2dd4368f5e35054 was authored by Sebastián Ramírez. The commit message is: 🔥 Remove now-obsolete scripts to generate data for FastAPI People (#16016)",
+    "expected_context_keywords": [
+      "7f05e26d",
+      "Sebastián Ramírez"
+    ]
+  },
+  {
+    "id": 25,
+    "question": "What does commit efcf8a183026edb97e342ee3fb38a0a3416798ac do?",
+    "ground_truth": "Commit efcf8a183026edb97e342ee3fb38a0a3416798ac (efcf8a18) by github-actions[bot] is described as: 📝 Update release notes  [skip ci]",
+    "expected_context_keywords": [
+      "efcf8a18",
+      "github-actions[bot]",
+      "📝"
+    ]
+  },
+  {
+    "id": 26,
+    "question": "Who authored commit efcf8a183026edb97e342ee3fb38a0a3416798ac?",
+    "ground_truth": "Commit efcf8a183026edb97e342ee3fb38a0a3416798ac was authored by github-actions[bot]. The commit message is: 📝 Update release notes  [skip ci]",
+    "expected_context_keywords": [
+      "efcf8a18",
+      "github-actions[bot]"
+    ]
+  },
+  {
+    "id": 27,
+    "question": "What does commit e735449bae685102d448d2a443a88e1d3304abbd do?",
+    "ground_truth": "Commit e735449bae685102d448d2a443a88e1d3304abbd (e735449b) by Sebastián Ramírez is described as: 📝 Restructure FastAPI People and related pages (#16015)",
+    "expected_context_keywords": [
+      "e735449b",
+      "Sebastián Ramírez",
+      "📝"
+    ]
+  },
+  {
+    "id": 28,
+    "question": "Who authored commit e735449bae685102d448d2a443a88e1d3304abbd?",
+    "ground_truth": "Commit e735449bae685102d448d2a443a88e1d3304abbd was authored by Sebastián Ramírez. The commit message is: 📝 Restructure FastAPI People and related pages (#16015)",
+    "expected_context_keywords": [
+      "e735449b",
+      "Sebastián Ramírez"
+    ]
+  },
+  {
+    "id": 29,
+    "question": "What does commit 866b7a3d0ce1025a3811f23aea4846d01a2b16a8 do?",
+    "ground_truth": "Commit 866b7a3d0ce1025a3811f23aea4846d01a2b16a8 (866b7a3d) by Sebastián Ramírez is described as: 🔖 Release version 0.139.2 (#16014)  Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>",
+    "expected_context_keywords": [
+      "866b7a3d",
+      "Sebastián Ramírez",
+      "🔖"
+    ]
+  },
+  {
+    "id": 30,
+    "question": "Who authored commit 866b7a3d0ce1025a3811f23aea4846d01a2b16a8?",
+    "ground_truth": "Commit 866b7a3d0ce1025a3811f23aea4846d01a2b16a8 was authored by Sebastián Ramírez. The commit message is: 🔖 Release version 0.139.2 (#16014)  Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>",
+    "expected_context_keywords": [
+      "866b7a3d",
+      "Sebastián Ramírez"
+    ]
+  },
+  {
+    "id": 31,
+    "question": "What does commit 7b3effea754619f0c305af576be23a51865292a3 do?",
+    "ground_truth": "Commit 7b3effea754619f0c305af576be23a51865292a3 (7b3effea) by github-actions[bot] is described as: 📝 Update release notes  [skip ci]",
+    "expected_context_keywords": [
+      "7b3effea",
+      "github-actions[bot]",
+      "📝"
+    ]
+  },
+  {
+    "id": 32,
+    "question": "Who authored commit 7b3effea754619f0c305af576be23a51865292a3?",
+    "ground_truth": "Commit 7b3effea754619f0c305af576be23a51865292a3 was authored by github-actions[bot]. The commit message is: 📝 Update release notes  [skip ci]",
+    "expected_context_keywords": [
+      "7b3effea",
+      "github-actions[bot]"
+    ]
+  },
+  {
+    "id": 33,
+    "question": "What does commit 7fe315c21afb8a57a2b559772e0f7ced7e5d071a do?",
+    "ground_truth": "Commit 7fe315c21afb8a57a2b559772e0f7ced7e5d071a (7fe315c2) by Sebastián Ramírez is described as: 🐛 Refactor router route building to make it thread-safe, mainly relevant for tests running in parallel threads (uncommon) (#16013)",
+    "expected_context_keywords": [
+      "7fe315c2",
+      "Sebastián Ramírez",
+      "🐛"
+    ]
+  },
+  {
+    "id": 34,
+    "question": "Who authored commit 7fe315c21afb8a57a2b559772e0f7ced7e5d071a?",
+    "ground_truth": "Commit 7fe315c21afb8a57a2b559772e0f7ced7e5d071a was authored by Sebastián Ramírez. The commit message is: 🐛 Refactor router route building to make it thread-safe, mainly relevant for tests running in parallel threads (uncommon) (#16013)",
+    "expected_context_keywords": [
+      "7fe315c2",
+      "Sebastián Ramírez"
+    ]
+  },
+  {
+    "id": 35,
+    "question": "What does commit c48e67b1ce9c03fc9bd4b1ac72350e51ad5a6e8a do?",
+    "ground_truth": "Commit c48e67b1ce9c03fc9bd4b1ac72350e51ad5a6e8a (c48e67b1) by Sebastián Ramírez is described as: 🔖 Release version 0.139.1 (#16012)  Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>",
+    "expected_context_keywords": [
+      "c48e67b1",
+      "Sebastián Ramírez",
+      "🔖"
+    ]
+  },
+  {
+    "id": 36,
+    "question": "Who authored commit c48e67b1ce9c03fc9bd4b1ac72350e51ad5a6e8a?",
+    "ground_truth": "Commit c48e67b1ce9c03fc9bd4b1ac72350e51ad5a6e8a was authored by Sebastián Ramírez. The commit message is: 🔖 Release version 0.139.1 (#16012)  Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>",
+    "expected_context_keywords": [
+      "c48e67b1",
+      "Sebastián Ramírez"
+    ]
+  },
+  {
+    "id": 37,
+    "question": "What does commit 2acc4fbf155caf016e3bd2602c0d2ec52723e635 do?",
+    "ground_truth": "Commit 2acc4fbf155caf016e3bd2602c0d2ec52723e635 (2acc4fbf) by github-actions[bot] is described as: 📝 Update release notes  [skip ci]",
+    "expected_context_keywords": [
+      "2acc4fbf",
+      "github-actions[bot]",
+      "📝"
+    ]
+  },
+  {
+    "id": 38,
+    "question": "Who authored commit 2acc4fbf155caf016e3bd2602c0d2ec52723e635?",
+    "ground_truth": "Commit 2acc4fbf155caf016e3bd2602c0d2ec52723e635 was authored by github-actions[bot]. The commit message is: 📝 Update release notes  [skip ci]",
+    "expected_context_keywords": [
+      "2acc4fbf",
+      "github-actions[bot]"
+    ]
+  },
+  {
+    "id": 39,
+    "question": "What does commit eb75fd078e83aed935016bcdf0705cd58bbf0d0e do?",
+    "ground_truth": "Commit eb75fd078e83aed935016bcdf0705cd58bbf0d0e (eb75fd07) by Sebastián Ramírez is described as: 🐛 Fix frontend fallback support for doted paths like `/users/john.doe` (#16011)",
+    "expected_context_keywords": [
+      "eb75fd07",
+      "Sebastián Ramírez",
+      "🐛"
+    ]
+  },
+  {
+    "id": 40,
+    "question": "Who authored commit eb75fd078e83aed935016bcdf0705cd58bbf0d0e?",
+    "ground_truth": "Commit eb75fd078e83aed935016bcdf0705cd58bbf0d0e was authored by Sebastián Ramírez. The commit message is: 🐛 Fix frontend fallback support for doted paths like `/users/john.doe` (#16011)",
+    "expected_context_keywords": [
+      "eb75fd07",
+      "Sebastián Ramírez"
+    ]
+  },
+  {
+    "id": 41,
+    "question": "What issue does #16010 report?",
+    "ground_truth": "Issue #16010, opened by tiangolo, reports: app.frontend() with fallback=\"index.html\" returns 404 for client side routes that have a dot in the last path segment (like /users/john.doe or /v/1.2.3). ### Discussed in https://github.com/fastapi/fastapi/discussions/15979  <div type='discussions-op-text'>  <sup>Originally posted by **UditDewan** July 12, 2026</sup> ### First Check  - [x] I added a very descriptive title here",
+    "expected_context_keywords": [
+      "16010",
+      "app.frontend()",
+      "tiangolo"
+    ]
+  },
+  {
+    "id": 42,
+    "question": "What user-facing failure is described in issue #16010?",
+    "ground_truth": "Issue #16010 describes the user-facing failure: ### Discussed in https://github.com/fastapi/fastapi/discussions/15979  <div type='discussions-op-text'>  <sup>Originally posted by **UditDewan** July 12, 2026</sup> ### First Check  - [x] I added a very descriptive title here",
+    "expected_context_keywords": [
+      "16010",
+      "404",
+      "fallback"
+    ]
+  },
+  {
+    "id": 43,
+    "question": "Which behavior or path pattern is affected by issue #16010?",
+    "ground_truth": "Issue #16010 is about the behavior described in the title: app.frontend() with fallback=\"index.html\" returns 404 for client side routes that have a dot in the last path segment (like /users/john.doe or /v/1.2.3). ### Discussed in https://github.com/fastapi/fastapi/discussions/15979  <div type='discussions-op-text'>  <sup>Originally posted by **UditDewan** July 12, 2026</sup> ### First Check  - [x] I added a very descriptive title here",
+    "expected_context_keywords": [
+      "16010",
+      "app.frontend()"
+    ]
+  },
+  {
+    "id": 44,
+    "question": "What symptom is reported in issue #16010?",
+    "ground_truth": "Issue #16010 reports the symptom described in its body: ### Discussed in https://github.com/fastapi/fastapi/discussions/15979  <div type='discussions-op-text'>  <sup>Originally posted by **UditDewan** July 12, 2026</sup> ### First Check  - [x] I added a very descriptive title here",
+    "expected_context_keywords": [
+      "16010",
+      "symptom",
+      "404"
+    ]
+  },
+  {
+    "id": 45,
+    "question": "Who opened issue #16010?",
+    "ground_truth": "Issue #16010 was opened by tiangolo. app.frontend() with fallback=\"index.html\" returns 404 for client side routes that have a dot in the last path segment (like /users/john.doe or /v/1.2.3)",
+    "expected_context_keywords": [
+      "16010",
+      "tiangolo"
+    ]
+  },
+  {
+    "id": 46,
+    "question": "What issue does #15974 report?",
+    "ground_truth": "Issue #15974, opened by UditDewan, reports: Race condition in _IncludedRouter cache rebuild can 404 valid routes and permanently corrupt the candidate cache. ### Description  Since the router refactor in 0.137.0 (#15745), `_IncludedRouter.effective_candidates()` and `_IncludedRouter.effective_low_priority_routes()` in `fastapi/routing.py` rebuild their cached lists lazily on first use, with no synchronization",
+    "expected_context_keywords": [
+      "15974",
+      "Race",
+      "UditDewan"
+    ]
+  },
+  {
+    "id": 47,
+    "question": "What user-facing failure is described in issue #15974?",
+    "ground_truth": "Issue #15974 describes the user-facing failure: ### Description  Since the router refactor in 0.137.0 (#15745), `_IncludedRouter.effective_candidates()` and `_IncludedRouter.effective_low_priority_routes()` in `fastapi/routing.py` rebuild their cached lists lazily on first use, with no synchronization",
+    "expected_context_keywords": [
+      "15974",
+      "404",
+      "fallback"
+    ]
+  },
+  {
+    "id": 48,
+    "question": "Which behavior or path pattern is affected by issue #15974?",
+    "ground_truth": "Issue #15974 is about the behavior described in the title: Race condition in _IncludedRouter cache rebuild can 404 valid routes and permanently corrupt the candidate cache. ### Description  Since the router refactor in 0.137.0 (#15745), `_IncludedRouter.effective_candidates()` and `_IncludedRouter.effective_low_priority_routes()` in `fastapi/routing.py` rebuild their cached lists lazily on first use, with no synchronization",
+    "expected_context_keywords": [
+      "15974",
+      "Race"
+    ]
+  },
+  {
+    "id": 49,
+    "question": "What symptom is reported in issue #15974?",
+    "ground_truth": "Issue #15974 reports the symptom described in its body: ### Description  Since the router refactor in 0.137.0 (#15745), `_IncludedRouter.effective_candidates()` and `_IncludedRouter.effective_low_priority_routes()` in `fastapi/routing.py` rebuild their cached lists lazily on first use, with no synchronization",
+    "expected_context_keywords": [
+      "15974",
+      "symptom",
+      "404"
+    ]
+  },
+  {
+    "id": 50,
+    "question": "Who opened issue #15974?",
+    "ground_truth": "Issue #15974 was opened by UditDewan. Race condition in _IncludedRouter cache rebuild can 404 valid routes and permanently corrupt the candidate cache",
+    "expected_context_keywords": [
+      "15974",
+      "UditDewan"
+    ]
+  }
+]
