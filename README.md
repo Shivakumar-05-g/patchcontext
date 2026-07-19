@@ -51,52 +51,52 @@ flowchart TD
 ```text
 PatchContext/
 │
-├── app.py
+├── app.py                     # Streamlit entry point
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
-├── .env                  # local only, not committed
+├── .env                       # local only, not committed
 │
 ├── data/
-│   ├── raw/
+│   ├── raw/                   # unprocessed data pulled from the GitHub API
 │   │   ├── commits.json
 │   │   ├── issues.json
 │   │   ├── pull_requests.json
-│   │   ├── test_commits.json
+│   │   ├── test_commits.json  # small fixtures used by scripts/test_*.py
 │   │   ├── test_issues.json
 │   │   └── test_prs.json
-│   └── processed/
+│   └── processed/             # chunked/normalized docs, output of document_processor.py
 │
 ├── evaluation/
-│   ├── benchmark_50.json
-│   ├── report.md
-│   └── results.json
+│   ├── benchmark_50.json      # 50-question benchmark used for RAGAs runs
+│   ├── report.md              # human-readable summary of the latest eval run
+│   └── results.json           # raw metric output from evaluate.py
 │
-├── scripts/
-│   ├── ingest.py
-│   ├── generate_benchmark.py
-│   ├── evaluate.py
-│   ├── test_guard.py
-│   ├── test_helpers.py
-│   ├── test_loader.py
-│   ├── test_processor.py
-│   ├── test_rag.py
-│   └── test_retriever.py
+├── scripts/                    # CLI entry points, run with `python scripts/<name>.py`
+│   ├── ingest.py                # pulls repo history, builds the FAISS index
+│   ├── generate_benchmark.py    # builds evaluation/benchmark_50.json
+│   ├── evaluate.py              # runs RAGAs over the benchmark, writes results.json
+│   ├── test_guard.py            # unit tests for hallucination_guard.py
+│   ├── test_helpers.py          # shared test fixtures/utilities
+│   ├── test_loader.py           # unit tests for github_loader.py
+│   ├── test_processor.py        # unit tests for document_processor.py
+│   ├── test_rag.py              # unit tests for rag_chain.py
+│   └── test_retriever.py        # unit tests for retriever.py
 │
-├── src/
-│   ├── config.py
-│   ├── github_loader.py
-│   ├── document_processor.py
-│   ├── embeddings.py
-│   ├── vector_store.py
-│   ├── retriever.py
-│   ├── rag_chain.py
-│   ├── hallucination_guard.py
-│   ├── citations.py
-│   └── evaluation.py
+├── src/                         # core library code, imported by app.py and scripts/
+│   ├── config.py                # env vars, paths, model names, retrieval params
+│   ├── github_loader.py         # GitHub API client, fetches commits/PRs/issues
+│   ├── document_processor.py    # chunking and normalization of raw records
+│   ├── embeddings.py            # wraps the HuggingFace embedding model
+│   ├── vector_store.py          # FAISS index build/load/save
+│   ├── retriever.py             # MMR retrieval over the FAISS index
+│   ├── rag_chain.py             # ties retrieval + Groq generation together
+│   ├── hallucination_guard.py   # NLI check on generated answers
+│   ├── citations.py             # maps retrieved chunks back to GitHub links
+│   └── evaluation.py            # RAGAs evaluation helpers used by evaluate.py
 │
 └── vectorstore/
-    └── faiss_index/
+    └── faiss_index/            # persisted index, rebuilt by scripts/ingest.py
         ├── index.faiss
         └── index.pkl
 ```
